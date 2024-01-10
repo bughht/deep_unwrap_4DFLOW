@@ -10,6 +10,7 @@ def wrap(img, venc_reduction=0.5):
     Returns:
         wrapped phase image
     """
+    img=img.copy()
     img[1:] /= venc_reduction
     img[1:] = (img[1:]+np.pi) % (2*np.pi)-np.pi
     return img
