@@ -37,15 +37,21 @@ class Dataset_4DFlow(Dataset):
 if __name__ == "__main__":
     dataset = Dataset_4DFlow("data")
     print(len(dataset))
-    img = dataset[5]
+    img = dataset[4]
     print(img.shape)
 
-    for i, _ratio in enumerate(np.linspace(0.2, 1, 9)):
-        img_wrap = wrap(img[1, 4, :, :, 10], _ratio)
-        plt.subplot(3, 3, i+1)
-        plt.imshow(img_wrap)
-        plt.title(f"ratio: {_ratio}")
+    for t in range(img.shape[1]):
+        img_wrap = wrap(img, .3)
+        plt.subplot(5, 5, t+1)
+        plt.imshow(img_wrap[1, t, :, :, 10])
+        plt.title(f"t: {t}")
         plt.colorbar()
-
-    plt.savefig("plotfigure/_.png")
     plt.show()
+
+    # for i, _ratio in enumerate(np.linspace(0.2, 1, 9)):
+    #     img_wrap = wrap(img[1, 4, :, :, 10], _ratio)
+    #     plt.subplot(3, 3, i+1)
+    #     plt.imshow(img_wrap)
+    #     plt.title(f"ratio: {_ratio}")
+    #     plt.colorbar()
+    # plt.show()
